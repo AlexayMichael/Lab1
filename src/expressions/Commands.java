@@ -26,7 +26,11 @@ public class Commands {
                 }
         }
         return exp.simplify(values).toString();
+<<<<<<< HEAD
      //zaijiayige
+=======
+     //you yao jia zhushi
+>>>>>>> C4
     }
     
 }

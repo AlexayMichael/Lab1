@@ -24,7 +24,7 @@ class Multiply implements Expression{
         return terms;
     };
     
-// jia zhushi
+
     public List<Expression> factors(){
         List<Expression> factors = new ArrayList<>();
         factors.addAll(this.left.factors());

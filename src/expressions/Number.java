@@ -42,7 +42,7 @@ class Number implements Expression{
 		return num == otherNum.num;
 	}
 	
-	//Uses d(constant)/dt = 0
+
 	public Expression differentiate(Expression var){
 	    return new Number(0);
 	}

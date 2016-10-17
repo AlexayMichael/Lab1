@@ -22,7 +22,7 @@ public class Parser {
        CharStream stream = new ANTLRInputStream(string);
 
        try{
-           // Make a parser
+          
            ExpressionParser parser = makeParser(stream);
            
            // Generate the parse tree using the starter rule.
