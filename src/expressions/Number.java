@@ -27,7 +27,7 @@ class Number implements Expression{
         factors.add(this);
         return factors;
     };
-    //jia zhushi 
+     
 	
 	
 
