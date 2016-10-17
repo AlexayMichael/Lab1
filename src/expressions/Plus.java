@@ -28,7 +28,7 @@ class Plus implements Expression{
         return factors;
     };
     
-
+    //this is the main formula
     //Uses d(u+v)/dt = du/dt + dv/dt
     @Override public Expression differentiate(Expression var){
         return Expression.sum(left.differentiate(var),right.differentiate(var));
