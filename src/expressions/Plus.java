@@ -52,7 +52,7 @@ class Plus implements Expression{
     @Override public double numFactor(){
         return 1;
     }
-    
+    //B2
 
     @Override public Expression varTerm(){
         return Expression.sum(left.varTerm(),right.varTerm());

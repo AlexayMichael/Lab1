@@ -93,6 +93,7 @@ class Variable implements Expression{
 		Variable otherVar = (Variable) other;
 		return var.equals(otherVar.var);
 		}
+	//B2
 	public int hashCode(){
 	    int result = 43;
 	    int c = var.hashCode();
