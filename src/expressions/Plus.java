@@ -29,7 +29,7 @@ class Plus implements Expression{
     };
     
     
-    //Uses d(u+v)/dt = du/dt + dv/dt
+   
     @Override public Expression differentiate(Expression var){
         return Expression.sum(left.differentiate(var),right.differentiate(var));
     }
