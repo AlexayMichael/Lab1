@@ -67,7 +67,7 @@ class Plus implements Expression{
 
     @Override public String toString(){
         //List <Expression> terms = this.terms();
-        //String plusString = "";
+      
         //for(Expression term:terms){
         //    plusString+= " + " + term.toString();
         //}

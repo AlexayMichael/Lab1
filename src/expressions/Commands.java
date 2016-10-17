@@ -26,7 +26,7 @@ public class Commands {
                 }
         }
         return exp.simplify(values).toString();
-     
+     //zaijiayige
     }
     
 }

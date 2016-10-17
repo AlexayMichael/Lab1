@@ -3,7 +3,7 @@ import java.util.*;
 public interface Expression {
 	//Expression = Number(n: int) 
 	
-	//+ Plus(left: Expression, right: Expression) 
+	
 	//+ Multiply (left: Expression, right: Expression)
     
     
