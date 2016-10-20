@@ -33,7 +33,7 @@ public class Main {
 			while (true) {
 				System.out.print(prompt);
 				line = bufferRead.readLine();
-				if (line.length() == 0) {
+				if (line != null && line.length() == 0) {
 					leave += 1;
 					if (leave == 2) {
 						printOut("Goodbye!");
@@ -41,7 +41,7 @@ public class Main {
 					}
 				} else {
 
-					if (line.startsWith("!d/d")) {
+					if (line != null && line.startsWith("!d/d")) {
 
 						if (exp != null) {
 							String var = line.replaceFirst("!d/d", "");
@@ -54,7 +54,7 @@ public class Main {
 						} else {
 							printOut("Please enter an expression first");
 						}
-					} else if (line.startsWith("!simplify")) {
+					} else if (line != null && line.startsWith("!simplify")) {
 
 						if (exp != null) {
 							try {
