@@ -8,20 +8,20 @@ public interface Expression {
 	// + Plus(left: Expression, right: Expression)
 	// + Multiply (left: Expression, right: Expression)
 
-	public static Expression parse(String input) {
+	static Expression parse(String input) {
 		return Parser.parse(input);
 
 	}
 
-	public static Expression make(double num) {
+	static Expression make(double num) {
 		return new Number(num);
 	}
 
-	public static Expression make(String var) {
+	static Expression make(String var) {
 		return new Variable(var);
 	}
 
-	public static Expression sum(Expression left, Expression right) {
+	static Expression sum(final Expression left, final Expression right) {
 		Number zero = new Number(0);
 		if (left.equals(zero)) {
 			return right;
@@ -32,7 +32,7 @@ public interface Expression {
 		return new Plus(left, right);
 	}
 
-	public static Expression times(Expression left, Expression right) {
+	static Expression times(final Expression left, final Expression right) {
 		Number zero = new Number(0);
 		Number one = new Number(1);
 		if (left.equals(zero) || right.equals(zero)) {
@@ -47,28 +47,25 @@ public interface Expression {
 		return new Multiply(left, right);
 	}
 
-	public Expression simplify(Map<Expression, Double> values);
+	Expression simplify(Map<Expression, Double> values);
 
-	public double numTerm();
+	double numTerm();
 
-	public double numFactor();
+	double numFactor();
 
-	public Expression varTerm();
+	Expression varTerm();
 
-	public Expression varFactor();
+	Expression varFactor();
 
-	public Expression differentiate(Expression var);
+	Expression differentiate(Expression var);
 
-	public List<Expression> terms();
+	List<Expression> terms();
 
-	public List<Expression> factors();
+	List<Expression> factors();
 
-	@Override
-	public String toString();
+	@Override String toString();
 
-	@Override
-	public boolean equals(Object other);
+	@Override boolean equals(Object other);
 
-	@Override
-	public int hashCode();
+	@Override int hashCode();
 }

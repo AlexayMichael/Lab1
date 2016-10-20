@@ -10,7 +10,7 @@ class Number implements Expression {
 		assert num >= 0;
 	}
 
-	public Number(double n) {
+	public Number(final double n) {
 		num = n;
 		checkRep();
 	};
@@ -31,7 +31,7 @@ class Number implements Expression {
 		return num + "";
 	}
 
-	public boolean equals(Object other) {
+	public boolean equals(final Object other) {
 		if (!(other instanceof Number)) {
 			return false;
 		}
@@ -40,11 +40,11 @@ class Number implements Expression {
 	}
 
 	// Uses d(constant)/dt = 0
-	public Expression differentiate(Expression var) {
+	public Expression differentiate(final Expression var) {
 		return new Number(0);
 	}
 
-	public Expression simplify(Map<Expression, Double> values) {
+	public Expression simplify(final Map<Expression, Double> values) {
 		return this;
 	}
 

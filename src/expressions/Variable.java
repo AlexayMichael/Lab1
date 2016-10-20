@@ -12,7 +12,7 @@ class Variable implements Expression {
 		assert var.matches("[a-zA-Z]+");
 	}
 
-	Variable(String v) {
+	Variable(final String v) {
 		var = v;
 		checkRep();
 	};
@@ -24,7 +24,7 @@ class Variable implements Expression {
 	};
 
 	// Returns 1 if the variable is the same as this otherwise returns zero
-	public Expression differentiate(Expression var) {
+	public Expression differentiate(final Expression var) {
 		if (this.equals(var)) {
 			return new Number(1);
 		} else {
@@ -34,7 +34,7 @@ class Variable implements Expression {
 
 	// Substitute if map contains this variable, otherwise just return the
 	// variable
-	public Expression simplify(Map<Expression, Double> values) {
+	public Expression simplify(final Map<Expression, Double> values) {
 		for (Expression var : values.keySet()) {
 			if (this.equals(var)) {
 				return new Number(values.get(var));
@@ -84,7 +84,7 @@ class Variable implements Expression {
 	 *         represented by the other, according to String.equals, otherwise
 	 *         return false
 	 */
-	public boolean equals(Object other) {
+	public boolean equals(final Object other) {
 		if (!(other instanceof Variable)) {
 			return false;
 		}

@@ -9,7 +9,7 @@ class Multiply implements Expression {
 	private final Expression left;
 	private final Expression right;
 
-	Multiply(Expression left, Expression right) {
+	Multiply(final Expression left, final Expression right) {
 		this.left = left;
 		this.right = right;
 	}
@@ -32,12 +32,12 @@ class Multiply implements Expression {
 	};
 
 	// Uses d(u*v)/dt = u(dv/dt) + v(du/dt)
-	public Expression differentiate(Expression var) {
+	public Expression differentiate(final Expression var) {
 		return Expression.sum(Expression.times(left, right.differentiate(var)),
 				Expression.times(left.differentiate(var), right));
 	}
 
-	public Expression simplify(Map<Expression, Double> values) {
+	public Expression simplify(final Map<Expression, Double> values) {
 		Expression simpExp = Expression.times(left.simplify(values), right.simplify(values));
 		Number numFactor = new Number(simpExp.numFactor());
 		Expression varFactor = simpExp.varFactor();
@@ -60,7 +60,7 @@ class Multiply implements Expression {
 		return Expression.times(left.varFactor(), right.varFactor());
 	}
 
-	public boolean equals(Object other) {
+	public boolean equals(final Object other) {
 		if (!(other instanceof Multiply)) {
 			return false;
 		}
@@ -76,11 +76,9 @@ class Multiply implements Expression {
 		return result;
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		Number n = new Number(5);
 		Variable v = new Variable("x");
-		Plus pl1 = new Plus(n, v);
-		Plus pl2 = new Plus(n, new Variable("y"));
 		Map<Expression, Double> m = new HashMap<>();
 		m.put(new Variable("x"), 3.0);
 		System.out.println(Expression.times(n, Expression.sum(n, v)).simplify(m));

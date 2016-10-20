@@ -19,7 +19,7 @@ import expressions.parser.ExpressionListener;
 import expressions.parser.ExpressionParser;
 
 public class Parser {
-	public static Expression parse(String string) {
+	public static Expression parse(final String string) {
 		// Create a stream of characters from the string
 		CharStream stream = new ANTLRInputStream(string);
 
@@ -40,7 +40,7 @@ public class Parser {
 		}
 	}
 
-	private static ExpressionParser makeParser(CharStream stream) {
+	private static ExpressionParser makeParser(final CharStream stream) {
 
 		ExpressionLexer lexer = new ExpressionLexer(stream);
 		lexer.reportErrorsAsExceptions();
@@ -63,19 +63,19 @@ class MakeExpression implements ExpressionListener {
 	}
 
 	@Override
-	public void enterRoot(ExpressionParser.RootContext context) {
+	public void enterRoot(final ExpressionParser.RootContext context) {
 	}
 
 	@Override
-	public void exitRoot(ExpressionParser.RootContext context) {
+	public void exitRoot(final ExpressionParser.RootContext context) {
 	}
 
 	@Override
-	public void enterSum(ExpressionParser.SumContext context) {
+	public void enterSum(final ExpressionParser.SumContext context) {
 	}
 
 	@Override
-	public void exitSum(ExpressionParser.SumContext context) {
+	public void exitSum(final ExpressionParser.SumContext context) {
 		// matched the product ('+' product)* rule
 		List<ExpressionParser.ProductContext> terms = context.product();
 		assert stack.size() >= terms.size();
@@ -95,11 +95,11 @@ class MakeExpression implements ExpressionListener {
 	}
 
 	@Override
-	public void enterProduct(ExpressionParser.ProductContext context) {
+	public void enterProduct(final ExpressionParser.ProductContext context) {
 	}
 
 	@Override
-	public void exitProduct(ExpressionParser.ProductContext context) {
+	public void exitProduct(final ExpressionParser.ProductContext context) {
 		// matched the product ('+' product)* rule
 
 		List<ExpressionParser.PrimitiveContext> factors = context.primitive();
@@ -135,26 +135,23 @@ class MakeExpression implements ExpressionListener {
 			String v = context.VAR().getText();
 			Expression var = Expression.make(v);
 			stack.push(var);
-		} else {
-			// matched the '(' sum ')' alternative
-			// do nothing, because sum's value is already on the stack
-		}
+		} 
 	}
 
 	@Override
-	public void visitTerminal(TerminalNode terminal) {
+	public void visitTerminal(final TerminalNode terminal) {
 	}
 
 	// don't need these here, so just make them empty implementations
 	@Override
-	public void enterEveryRule(ParserRuleContext context) {
+	public void enterEveryRule(final ParserRuleContext context) {
 	}
 
 	@Override
-	public void exitEveryRule(ParserRuleContext context) {
+	public void exitEveryRule(final ParserRuleContext context) {
 	}
 
 	@Override
-	public void visitErrorNode(ErrorNode node) {
+	public void visitErrorNode(final ErrorNode node) {
 	}
 }

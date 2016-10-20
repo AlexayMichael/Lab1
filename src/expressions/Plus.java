@@ -9,7 +9,7 @@ class Plus implements Expression {
 	private final Expression left;
 	private final Expression right;
 
-	Plus(Expression left, Expression right) {
+	Plus(final Expression left, final Expression right) {
 		this.left = left;
 		this.right = right;
 	};
@@ -30,12 +30,12 @@ class Plus implements Expression {
 	// this is the main formula
 	// Uses d(u+v)/dt = du/dt + dv/dt
 	@Override
-	public Expression differentiate(Expression var) {
+	public Expression differentiate(final Expression var) {
 		return Expression.sum(left.differentiate(var), right.differentiate(var));
 	}
 
 	@Override
-	public Expression simplify(Map<Expression, Double> values) {
+	public Expression simplify(final Map<Expression, Double> values) {
 		Expression simpExp = Expression.sum(left.simplify(values), right.simplify(values));
 		Number numTerm = new Number(simpExp.numTerm());
 		Expression varTerm = simpExp.varTerm();
@@ -74,7 +74,7 @@ class Plus implements Expression {
 		return "(" + this.left.toString() + " + " + this.right.toString() + ")";
 	}
 
-	public boolean equals(Object other) {
+	public boolean equals(final Object other) {
 		if (!(other instanceof Plus)) {
 			return false;
 		}
