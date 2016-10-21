@@ -28,12 +28,14 @@ public class Main {
 			printOut("Welcome to Expressivo! \nEnter your expression below.\n"
 					+ "Once you have done that you may start entering your commands with \'!\'.\nPress enter twice to quit");
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-			
+			String inputex = "";
 			int leave = 0;
 			while (true) {
 				String line;
 				System.out.print(prompt);
 				line = bufferRead.readLine();
+				
+				
 				if (line != null && line.length() == 0) {
 					leave += 1;
 					if (leave == 2) {
@@ -43,33 +45,51 @@ public class Main {
 				} else {
 
 					if (line != null && line.startsWith("!d/d")) {
-
+						System.out.println("inputex="+inputex);
 						if (exp == null) {
 							printOut("Please enter an expression first");
 						} else {
 							String var = line.replaceFirst("!d/d", "");
 							try {
-								String diffExp = Commands.differentiate(exp, var);
-								printOut(diffExp);
+								if(inputex.contains(var) == false) {
+									System.out.println("Sorry, I just don't understand..");
+								} else {
+									String diffExp = Commands.differentiate(exp, var);
+									printOut(diffExp);
+								}
 							} catch (AssertionError ae) {
 								printOut("Your variable is not in the right format.");
 							}
 						}
 					} else if (line != null && line.startsWith("!simplify")) {
-
+						System.out.println("inputex="+inputex);
 						if (exp == null) {
 							printOut("Please enter an expression first");
 						} else {
 							try {
+								int flag = 1;
 								String vars = line.replaceFirst("!simplify\\s*", "");
-								String simpExp = Commands.simplify(exp, vars);
-								printOut(simpExp);
+								String[] varsArray = vars.split("=[0-9]+\\s*");
+								for(int i=0; i<varsArray.length; i++) {
+									System.out.println("varsArray[i]: "+ varsArray[i]);
+									if(inputex.contains(varsArray[i]) == false) {
+										System.out.println("Sorry, I just don't understand..");
+										flag = 0;
+										break;
+									} 
+								}
+								if(flag == 1) {
+									String simpExp = Commands.simplify(exp, vars);
+									printOut(simpExp);
+								}
+
 							} catch (AssertionError ae) {
 								printOut("Your variables and values are not in the right format.");
 							}
 						}
 					} else {
 						try {
+							inputex = line;
 							exp = Expression.parse(line);
 							printOut(exp.toString());
 						} catch (ParseError pe) {
