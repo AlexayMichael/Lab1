@@ -45,7 +45,7 @@ public class Main {
 				} else {
 
 					if (line != null && line.startsWith("!d/d")) {
-						System.out.println("inputex="+inputex);
+//						System.out.println("inputex="+inputex);
 						if (exp == null) {
 							printOut("Please enter an expression first");
 						} else {
@@ -62,7 +62,7 @@ public class Main {
 							}
 						}
 					} else if (line != null && line.startsWith("!simplify")) {
-						System.out.println("inputex="+inputex);
+//						System.out.println("inputex="+inputex);
 						if (exp == null) {
 							printOut("Please enter an expression first");
 						} else {
@@ -71,7 +71,7 @@ public class Main {
 								String vars = line.replaceFirst("!simplify\\s*", "");
 								String[] varsArray = vars.split("=[0-9]+\\s*");
 								for(int i=0; i<varsArray.length; i++) {
-									System.out.println("varsArray[i]: "+ varsArray[i]);
+//									System.out.println("varsArray[i]: "+ varsArray[i]);
 									if(inputex.contains(varsArray[i]) == false) {
 										System.out.println("Sorry, I just don't understand..");
 										flag = 0;
