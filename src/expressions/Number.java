@@ -28,7 +28,7 @@ class Number implements Expression {
 	};
 
 	public String toString() {
-		return num + "";
+		return String.valueOf(num);
 	}
 
 	public boolean equals(final Object other) {

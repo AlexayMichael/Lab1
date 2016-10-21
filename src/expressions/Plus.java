@@ -2,7 +2,6 @@ package expressions;
 
 import java.util.*;
 
-import expressions.Number;
 
 class Plus implements Expression {
 

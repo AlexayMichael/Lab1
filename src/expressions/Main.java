@@ -11,15 +11,15 @@ import java.io.*;
 public class Main {
 	private static String prompt = ">";
 
-	public static void printOut(String output) {
-		System.out.println(makePromptString(output));
+	public static void printOut(String outputString) {
+		System.out.println(makePromptString(outputString));
 	}
 
-	public static String makePromptString(String output) {
-		if (output.startsWith("(")) {
-			output = output.substring(1, output.length() - 1);
+	public static String makePromptString(String outputString) {
+		if (outputString.charAt(0)=='(') {
+			outputString = outputString.substring(1, outputString.length() - 1);
 		}
-		return prompt + output;
+		return prompt + outputString;
 	}
 
 	public static void main(final String[] args) {
@@ -28,9 +28,10 @@ public class Main {
 			printOut("Welcome to Expressivo! \nEnter your expression below.\n"
 					+ "Once you have done that you may start entering your commands with \'!\'.\nPress enter twice to quit");
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-			String line;
+			
 			int leave = 0;
 			while (true) {
+				String line;
 				System.out.print(prompt);
 				line = bufferRead.readLine();
 				if (line != null && line.length() == 0) {
@@ -43,7 +44,9 @@ public class Main {
 
 					if (line != null && line.startsWith("!d/d")) {
 
-						if (exp != null) {
+						if (exp == null) {
+							printOut("Please enter an expression first");
+						} else {
 							String var = line.replaceFirst("!d/d", "");
 							try {
 								String diffExp = Commands.differentiate(exp, var);
@@ -51,12 +54,12 @@ public class Main {
 							} catch (AssertionError ae) {
 								printOut("Your variable is not in the right format.");
 							}
-						} else {
-							printOut("Please enter an expression first");
 						}
 					} else if (line != null && line.startsWith("!simplify")) {
 
-						if (exp != null) {
+						if (exp == null) {
+							printOut("Please enter an expression first");
+						} else {
 							try {
 								String vars = line.replaceFirst("!simplify\\s*", "");
 								String simpExp = Commands.simplify(exp, vars);
@@ -64,8 +67,6 @@ public class Main {
 							} catch (AssertionError ae) {
 								printOut("Your variables and values are not in the right format.");
 							}
-						} else {
-							printOut("Please enter an expression first");
 						}
 					} else {
 						try {

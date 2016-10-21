@@ -2,7 +2,6 @@ package expressions;
 
 import java.util.*;
 
-import expressions.Number;
 
 class Multiply implements Expression {
 
@@ -63,10 +62,11 @@ class Multiply implements Expression {
 	public boolean equals(final Object other) {
 		if (!(other instanceof Multiply)) {
 			return false;
+		} else {
+			Multiply otherMult = (Multiply) other;
+			// return (this.factors().equals(otherMult.factors()));
+			return (this.left.equals(otherMult.left) && this.right.equals(otherMult.right));
 		}
-		Multiply otherMult = (Multiply) other;
-		// return (this.factors().equals(otherMult.factors()));
-		return (this.left.equals(otherMult.left) && this.right.equals(otherMult.right));
 	}
 
 	public int hashCode() {
