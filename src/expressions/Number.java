@@ -1,77 +1,73 @@
 package expressions;
+
 import java.util.*;
 
-class Number implements Expression{
-	
+class Number implements Expression {
+
 	private final double num;
-	
-	
-	private void checkRep(){
+
+	private void checkRep() {
 		assert num >= 0;
 	}
-	
-	public Number(double n){
+
+	public Number(final double n) {
 		num = n;
 		checkRep();
 	};
-	
-    public List<Expression> terms(){
-        List <Expression> terms = new ArrayList<>();
-        terms.add(this);
-        return terms;
-    };
-    
 
-    public List<Expression> factors(){
-        List <Expression> factors = new ArrayList<>();
-        factors.add(this);
-        return factors;
-    };
-	
-	
+	public List<Expression> terms() {
+		List<Expression> terms = new ArrayList<>();
+		terms.add(this);
+		return terms;
+	};
 
-	public String toString(){
-		return num+"";
+	public List<Expression> factors() {
+		List<Expression> factors = new ArrayList<>();
+		factors.add(this);
+		return factors;
+	};
+
+	public String toString() {
+		return String.valueOf(num);
+	}
+
+	public boolean equals(final Object other) {
+		if (!(other instanceof Number)) {
+			return false;
 		}
-	
-	
-	public boolean equals(Object other){
-		if(!(other instanceof Number)){return false;}
-		Number otherNum = (Number)other;
+		Number otherNum = (Number) other;
 		return num == otherNum.num;
 	}
-	
-	//Uses d(constant)/dt = 0
-	public Expression differentiate(Expression var){
-	    return new Number(0);
+
+	// Uses d(constant)/dt = 0
+	public Expression differentiate(final Expression var) {
+		return new Number(0);
 	}
 
-	public Expression simplify(Map<Expression,Double> values){
-	    return this;
+	public Expression simplify(final Map<Expression, Double> values) {
+		return this;
 	}
-	
-    public double numTerm(){
-        return num;
-    }
-    
-    public double numFactor(){
-        return num;
-    }
-    
-    public Expression varTerm(){
-        return new Number(0);
-    }
-    
-    public Expression varFactor(){
-        return new Number(1);
-    }
-	
-	public int hashCode(){
-	    int result = 43;
-	    long c = Double.doubleToLongBits(num);
-	    return 37*result + (int)(c&(c>>>32));
+
+	public double numTerm() {
+		return num;
+	}
+
+	public double numFactor() {
+		return num;
+	}
+
+	public Expression varTerm() {
+		return new Number(0);
+	}
+
+	public Expression varFactor() {
+		return new Number(1);
+	}
+
+	public int hashCode() {
+		int result = 43;
+		long c = Double.doubleToLongBits(num);
+		return 37 * result + (int) (c & (c >>> 32));
 	}
 
 }
-
-

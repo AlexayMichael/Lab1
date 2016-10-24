@@ -1,77 +1,71 @@
 package expressions;
+
 import java.util.*;
+
 public interface Expression {
-	//Expression = Number(n: int) 
-	//+ Variable(s: String) 
-	//+ Plus(left: Expression, right: Expression) 
-	//+ Multiply (left: Expression, right: Expression)
-    
-    
-  
-    public static Expression parse(String input){
-        return Parser.parse(input);
-  
-    }
-    
-    public static Expression make(double num){
-        return new Number(num);
-    }
-    
-    public static Expression make(String var){
-        return new Variable(var);
-    }
-    
-    public static Expression sum(Expression left, Expression right){
-        Number zero = new Number(0);
-        if(left.equals(zero)){
-            return right;
-        }
-        if(right.equals(zero)){
-            return left;
-        }
-        return new Plus(left,right);
-    }
-    
+	// Expression = Number(n: int)
+	// + Variable(s: String)
+	// + Plus(left: Expression, right: Expression)
+	// + Multiply (left: Expression, right: Expression)
 
-   public static Expression times(Expression left, Expression right){
-       Number zero = new Number(0);
-       Number one = new Number(1);
-       if(left.equals(zero)||right.equals(zero)){
-           return new Number(0);
-       }
-       if(left.equals(one)){
-           return right;
-       }
-       if(right.equals(one)){
-           return left;
-       }
-       return new Multiply(left,right);
-   }
-    
-   public Expression simplify(Map<Expression,Double> values);
-    
-    public double numTerm();
-    
-    public double numFactor();
-    
-    public Expression varTerm();
+	static Expression parse(String input) {
+		return Parser.parse(input);
 
-    public Expression varFactor();
-    
-    
-    public Expression differentiate(Expression var);
-    
+	}
 
-    
-    
-    public List<Expression> terms();
-    
-    public List<Expression> factors();
+	static Expression make(double num) {
+		return new Number(num);
+	}
 
-	@Override public String toString();
-	
+	static Expression make(String var) {
+		return new Variable(var);
+	}
 
-	@Override public boolean equals(Object other);
-	
-	@Override public int hashCode();
+	static Expression sum(final Expression left, final Expression right) {
+		Number zero = new Number(0);
+		if (left.equals(zero)) {
+			return right;
+		}
+		if (right.equals(zero)) {
+			return left;
+		}
+		return new Plus(left, right);
+	}
+
+	static Expression times(final Expression left, final Expression right) {
+		Number zero = new Number(0);
+		Number one = new Number(1);
+		if (left.equals(zero) || right.equals(zero)) {
+			return new Number(0);
+		}
+		if (left.equals(one)) {
+			return right;
+		}
+		if (right.equals(one)) {
+			return left;
+		}
+		return new Multiply(left, right);
+	}
+
+	Expression simplify(Map<Expression, Double> values);
+
+	double numTerm();
+
+	double numFactor();
+
+	Expression varTerm();
+
+	Expression varFactor();
+
+	Expression differentiate(Expression var);
+
+	List<Expression> terms();
+
+	List<Expression> factors();
+
+	@Override String toString();
+
+	@Override boolean equals(Object other);
+
+	@Override int hashCode();
 }
