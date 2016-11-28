@@ -8,6 +8,9 @@ package expressions;
 
 import java.io.*;
 
+
+//OO分析与设计后的版本
+//基本没什么改动。。
 public class Main {
 	private static String prompt = ">";
 
